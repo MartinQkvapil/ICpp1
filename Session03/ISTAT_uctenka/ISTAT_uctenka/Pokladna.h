@@ -1,23 +1,27 @@
-#pragma once
-
 #ifndef POKLADNA_H
 #define POKLADNA_H
 
 #include "Uctenka.h"
 
-class Pokladna {
+#define COUNTER_ID_INIT 1000
+#define CONTER_RECEPIET 10
+
+class CashRegister {
 public:
-	Uctenka *pocetVydanychUctenek = new Uctenka[10];
-	Pokladna() : citacId(1000) {};
+	CashRegister();
 
+	Receipt& createReceipt(double amount, double dph);
+	void printReceipt(int x);
 
-	Uctenka& vystavUctenku(double a, double b) {};
-	Uctenka& dejUctenku(int x) {};
-	double dejCastku() const {};
-	double dejCastkuVcDph() const {};
+	Receipt& giveReceipt(int x);
+	double getAmount() const;
+	double getAmountWDph() const;
 
 private:
-	int  citacId;
+	int  counterID;
+	Receipt *arrayOfReceipts;
+	int counterOFReceipts = 0;
+
 
 
 };

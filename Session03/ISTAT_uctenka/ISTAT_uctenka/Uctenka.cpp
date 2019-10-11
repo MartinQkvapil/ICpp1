@@ -1,33 +1,39 @@
+#include "pch.h"
 #include "Uctenka.h"
 
-Uctenka::Uctenka(int cisloUctenky, double dph, double castka) {
-	Uctenka::cisloUctenky = cisloUctenky;
-	Uctenka::dph = dph;
-	Uctenka::castka = castka;
+Receipt::Receipt(int receiptNumber, double dph, double amount)
+{
+	Receipt::amount = amount;
+	Receipt::receiptNumber = receiptNumber;
+	Receipt::dph = dph;
 }
 
-// Getters
-int Uctenka::getCisloUctenky() {
-	return Uctenka::cisloUctenky;
+void Receipt::setReceiptNumber(int a)
+{
+	receiptNumber = a;
 }
 
-double Uctenka::getCastka() {
-	return Uctenka::castka;
-};
+void Receipt::setAmount(double a)
+{
+	amount = a;
+}
 
-double Uctenka::getDph() {
-	return Uctenka::dph;
-};
+void Receipt::setDph(double a)
+{
+	dph = a;
+}
 
-// Setters
-void Uctenka::setCastka(double a) {
-	Uctenka::castka = a;
-};
+int Receipt::getReceiptNumber()
+{
+	return receiptNumber;
+}
 
-void Uctenka::setCisloUctenky(int a) {
-	Uctenka::cisloUctenky = a;
-};
+double Receipt::getAmount()
+{
+	return amount;
+}
 
-void Uctenka::setDph(double a) {
-	Uctenka::dph = a;
-};
+double Receipt::getDph()
+{
+	return dph;
+}

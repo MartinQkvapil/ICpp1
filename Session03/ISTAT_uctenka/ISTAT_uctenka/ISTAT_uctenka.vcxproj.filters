@@ -21,6 +21,9 @@
     <ClInclude Include="Uctenka.h">
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
+    <ClInclude Include="Pokladna.h">
+      <Filter>Hlavičkové soubory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -29,8 +32,11 @@
     <ClCompile Include="ISTAT_uctenka.cpp">
       <Filter>Zdrojové soubory</Filter>
     </ClCompile>
+    <ClCompile Include="Pokladna.cpp">
+      <Filter>Zdrojové soubory</Filter>
+    </ClCompile>
     <ClCompile Include="Uctenka.cpp">
-      <Filter>Soubory zdrojů</Filter>
+      <Filter>Zdrojové soubory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

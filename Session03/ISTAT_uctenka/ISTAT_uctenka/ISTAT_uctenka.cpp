@@ -4,9 +4,24 @@
 #include "pch.h"
 #include <iostream>
 
+#include "Uctenka.h"
+#include "Pokladna.h"
+
+using namespace std;
+
 int main()
 {
-    
+	CashRegister * tmp = new CashRegister();
+	tmp->createReceipt(100, 10);
+	tmp->createReceipt(101, 11);
+	tmp->createReceipt(102, 12);
+	
+	Receipt& temp = tmp->giveReceipt(1001);
+	
+	tmp->printReceipt(0);
+	
+
+
 }
 
 // Spuštění programu: Ctrl+F5 nebo nabídka Ladit > Spustit bez ladění
