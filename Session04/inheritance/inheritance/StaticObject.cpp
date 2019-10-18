@@ -2,10 +2,7 @@
 #include "StaticObject.h"
 
 StaticObject::StaticObject(int id, TypeOfObstacle type) : Object(id)
-{
-	
-		this->typPrekazky = type;
-	
+{		this->typPrekazky = type;
 }
 
 TypeOfObstacle StaticObject::GetTypeOfObstacle()

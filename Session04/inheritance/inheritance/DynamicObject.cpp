@@ -13,7 +13,7 @@ DynamicObject::~DynamicObject()
 {
 }
 
-void DynamicObject::setAngle(double x)
+void DynamicObject::SetAngle(double x)
 {
 	if (x > 0 && x < 2*M_PI) {
 		this->angle = x;
@@ -23,7 +23,7 @@ void DynamicObject::setAngle(double x)
 	}
 }
 
-double DynamicObject::getAngle()
+double DynamicObject::GetAngle()
 {
 	return this->angle;
 }

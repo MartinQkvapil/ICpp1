@@ -11,9 +11,14 @@
 int main()
 {
 	Object * obj1 = new Object(10);	
+	Object * obj2 = new Object(20);
 
 	Game *tmp = new Game();
-	tmp->insertObject(obj1);
+	tmp->InsertObject(obj1);
+	tmp->InsertObject(obj2);
+
+
+
 }
 
 // Spuštění programu: Ctrl+F5 nebo nabídka Ladit > Spustit bez ladění	
