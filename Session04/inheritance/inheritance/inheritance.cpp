@@ -8,15 +8,48 @@
 #include "game.h"
 #include "object.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <string>
+#include <crtdbg.h>
+
+#include <random>
+
+void testGame(int obj_count) {
+	int x, y;
+	
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 eng(rd()); // seed the generator
+	std::uniform_int_distribution<> distr(0, 9999); // define the range
+	
+	Game *tmp = new Game();
+	x = distr(eng);
+	y = distr(eng);
+
+	for (int i = 0; i < obj_count; i++)
+	{
+		
+		Object * tmpObj = new Object(i);
+		tmpObj->SetX(x);
+		tmpObj->SetY(y);
+
+		tmp->InsertObject(tmpObj);
+	}
+
+}
+
+
+
+
 int main()
 {
-	Object * obj1 = new Object(10);	
-	Object * obj2 = new Object(20);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // allocation check 
 
-	Game *tmp = new Game();
-	tmp->InsertObject(obj1);
-	tmp->InsertObject(obj2);
+	int obj_count = 100;
 
+	
+	testGame(obj_count);
+
+	
 
 
 }

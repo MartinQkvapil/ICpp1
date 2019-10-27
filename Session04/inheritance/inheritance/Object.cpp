@@ -16,27 +16,27 @@ Object::~Object()
 {
 }
 
-double Object::getX()
+double Object::GetX() const
 {
 	return this->x;
 }
 
-double Object::getY()
+double Object::GetY() const
 {
 	return this->y;
 }
 
-void Object::setX(double x)
+void Object::SetX(double x) 
 {
 	this->x = x;
 }
 
-void Object::setY(double y)
+void Object::SetY(double y) 
 {
 	this->y = y;
 }
 
-int Object::getId()
+int Object::GetId()
 {
 	return this->id;
 }

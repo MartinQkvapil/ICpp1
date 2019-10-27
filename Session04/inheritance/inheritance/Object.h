@@ -11,12 +11,12 @@ public:
 	Object(int, double, double);
 	virtual ~Object();
 
-	double getX();
-	double getY();
-	void setX(double);
-	void setY(double);
+	double GetX() const;
+	double GetY() const;
+	void SetX(double) ;
+	void SetY(double) ;
 
-	int getId();
+	int GetId();
 
 
 
