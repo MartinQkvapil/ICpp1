@@ -34,6 +34,6 @@ int Time::compareTo(IComparable * obj) const
 
 std::string Time::ToString() const
 {
-	std::cout << _hours << " hodin " << _minutes << " minut" << _seconds << " sekund" << std::endl;
+	std::cout << _hours << " hours " << _minutes << " minutes " << _seconds << " seconds " << std::endl;
 	return "toString Cas";
 }

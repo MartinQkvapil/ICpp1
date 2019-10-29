@@ -58,34 +58,34 @@ int * Game::findIdOfStaticObject(double xmin, double xmax, double ymin, double y
 //Vrátí pole ukazelù na pohyblivé objekty v kruhové oblasti(S = [x, y], radius = r).
 DynamicObject ** Game::FindDynObjects(double x, double y, double r)
 {
-	DynamicObject** pole = new DynamicObject*[10];
-	int pocetV = 0;
+	DynamicObject** arr = new DynamicObject*[10];
+	int countOfDyn = 0;
 
 	for (int i = 0; i < countOfObject; i++) {
 		DynamicObject* so = dynamic_cast<DynamicObject*>(objects[i]);
 		if (so != nullptr) {
-			pole[pocetV] = so;
-			pocetV++;
+			arr[countOfDyn] = so;
+			countOfDyn++;
 		}
 	}
-
-
-	return pole;
+	return arr;
 }
 
+//Viz pøedchozí, navíc kontrola úhlu natoèení
 DynamicObject ** Game::FindDynObjects(double x, double y, double r, double umin, double umax)
 {
-	DynamicObject** pole = new DynamicObject*[10];
-	int pocetV = 0;
+	DynamicObject** arr = new DynamicObject*[10];
+	int countOfDyn = 0;
 
 	for (int i = 0; i < countOfObject; i++) {
 		DynamicObject* so = dynamic_cast<DynamicObject*>(objects[i]);
-		if (so != nullptr) {
-			pole[pocetV] = so;
-			pocetV++;
+		if (so != nullptr) {	
+			// kontrola natoèení.. :D 
+			arr[countOfDyn] = so;
+			countOfDyn++;
 		}
 	}
 
 
-	return pole;
+	return arr;
 }

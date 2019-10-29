@@ -1,9 +1,9 @@
 #pragma once
 #include "IComparable.h"
-class Time : IComparable
+class Time : public IComparable
 {
 public:
-	Time(int, int, int);
+	Time(int _h, int _m, int _s);
 	~Time();
 
 	int compareTo(IComparable* obj) const override;

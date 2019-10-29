@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "object.h"
+#include "StaticObject.h"
 
 #define _CRTDBG_MAP_ALLOC
 #include <string>
@@ -27,12 +28,28 @@ void testGame(int obj_count) {
 
 	for (int i = 0; i < obj_count; i++)
 	{
-		
-		Object * tmpObj = new Object(i);
-		tmpObj->SetX(x);
-		tmpObj->SetY(y);
-
-		tmp->InsertObject(tmpObj);
+		if (i % 3 == 0) {
+			DynamicObject * tmpObj = new DynamicObject(i);
+			tmpObj->SetX(x);
+			tmpObj->SetY(y);
+			//tmpObj->ToString();
+			tmp->InsertObject(tmpObj);
+		}
+		else if(i%5 == 0) {
+			StaticObject * tmpObj = new StaticObject(i, TypeOfObstacle::Rock);
+			tmpObj->SetX(x);
+			tmpObj->SetY(y);
+			//tmpObj->ToString();
+			tmp->InsertObject(tmpObj);
+		}
+		else {
+			Object * tmpObj = new Object(i);
+			tmpObj->SetX(x);
+			tmpObj->SetY(y);
+			//tmpObj->ToString();
+			tmp->InsertObject(tmpObj);
+			//tmpObj->ToString();
+		}
 	}
 
 }

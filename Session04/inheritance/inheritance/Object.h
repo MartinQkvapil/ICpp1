@@ -1,5 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
+#include <string>
+
 
 class Object {
 private:
@@ -17,6 +19,9 @@ public:
 	void SetY(double) ;
 
 	int GetId();
+	std::string ToString() {
+		return "Obj: " + this->GetId();
+	}
 
 
 
