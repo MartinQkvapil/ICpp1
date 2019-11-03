@@ -4,6 +4,8 @@
 #include "pch.h"
 #include <iostream>
 #include <string>
+#include <ostream>
+#include <fstream>
 
 namespace Entity {
 	class Person {
@@ -102,13 +104,42 @@ namespace Model {
 	};
 }
 
+std::ostream& operator<<(std::ostream& os, const Entity::Person& osoba) {
+
+	std::cout << osoba.getId << std::endl;
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, Entity::Person& osoba) {
+
+	//std::cin << // set id;
+	return is;
+}
+
+void nacti() {
+	Entity::Person osoby[2];
+	std::ifstream soubor("dsd.ttf");
+	for (size_t i = 0; i < 2; i++)
+	{
+		soubor >> osoby[i];
+	}
+}
+
+void zapis() {
+	std::ofstream soubor("sobor.txt");
+	soubor << "petr:" << "endl" << "dad" << std::endl;
+	soubor.close();
+}
 
 int main()
 {
-
+	
 
 
 }
+
+
+
 
 // Spuštění programu: Ctrl+F5 nebo nabídka Ladit > Spustit bez ladění
 // Ladění programu: F5 nebo nabídka Ladit > Spustit ladění
