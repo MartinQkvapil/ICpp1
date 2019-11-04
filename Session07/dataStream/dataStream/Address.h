@@ -14,7 +14,7 @@ struct Address {
 	std::string _psc;
 
 	//std::ostream& operator<<(std::ostream& os, const Person osoba) {
-	std::ostream& operator<<(std::ostream& os) {
+	friend	std::ostream& operator<<(std::ostream& os, const Person& person) {
 		//std::cout << osoba.getId << std::endl;
 		return os;
 	}

@@ -118,12 +118,12 @@ namespace Model {
 	};
 }
 
-//std::ostream& operator<<(std::ostream& os, const Entity::Person& osoba) {
-//
-//	std::cout << osoba.getId << std::endl;
-//	return os;
-//}
-//
+std::ostream& operator<<(std::ostream& os, const Entity::Person& osoba) {
+
+	std::cout << osoba.getId << std::endl;
+	return os;
+}
+
 //std::istream& operator>>(std::istream& is, Entity::Person& osoba) {
 //
 //	//std::cin << // set id;
