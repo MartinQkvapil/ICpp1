@@ -7,6 +7,8 @@
 #include <ostream>
 #include <fstream>
 
+#include <exception>
+
 namespace Entity {
 	class Person {
 	public:
@@ -31,7 +33,7 @@ namespace Entity {
 		std::string telefon;
 		int id;
 
-		
+
 
 	};
 }
@@ -40,7 +42,7 @@ namespace Entity {
 //id / jméno osoby a hledanou hodnotou je telefon.pro implementaci tabulky vytvořte strukturu
 //spojový seznam.
 namespace Model {
-	
+
 	struct node
 	{
 		Entity::Person data;
@@ -49,11 +51,11 @@ namespace Model {
 
 	class Linked_list
 	{
-	
-	private: 
+
+	private:
 		Model::node *head, *tail;
 	public:
-		
+
 		Linked_list()
 		{
 			head = NULL;
@@ -78,17 +80,23 @@ namespace Model {
 		}
 		//o Přidá osobu do seznamu
 		std::string najdiTelefon(std::string name) const {
+			if (head == nullptr) {
+				throw std::logic_error("empty list");
+			}
 			node * tmp = head;
 			while (tmp != nullptr) {
 				if (tmp->data.getName() == name) {
 					return tmp->data.getTel();
-				}				
+				}
 				tmp = tmp->next;
 			}
 
-			
+			throw std::logic_error("By name phone not found");
 		}
 		std::string najdiTelefon(int id) const {
+			if (head == nullptr) {
+				throw std::logic_error("empty list");
+			}
 			node * tmp = head;
 			while (tmp != nullptr) {
 				if (tmp->data.getId() == id) {
@@ -96,14 +104,15 @@ namespace Model {
 				}
 				tmp = tmp->next;
 			}
+			throw std::logic_error("By id, phone not found");
 		}
 		//o Pokud je jméno osoby prázdné nebo id záporné je vyvolána výjimky oznamující	neplatný vstupní parametr.
 		//o Pokud zadaná osoba není v seznamu, metody vyvolají výjimku.
 	};
-	
+
 	class TelList {
 
-		
+
 
 
 	};
@@ -138,9 +147,9 @@ namespace Model {
 
 int main()
 {
-	Entity::Person p0 =  Entity::Person("Martin", "774993772");
+	Entity::Person p0 = Entity::Person("Martin", "774993772");
 	Entity::Person p1 = Entity::Person("Olda", "774993776");
-	
+
 	Model::Linked_list *list = new Model::Linked_list();
 	list->pridejOsobu(p0);
 	list->pridejOsobu(p1);
