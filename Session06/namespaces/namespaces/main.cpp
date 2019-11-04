@@ -11,6 +11,10 @@ namespace Entity {
 	class Person {
 	public:
 		Person() {};
+		Person(std::string name, std::string telefon) {
+			this->telefon = telefon;
+			this->name = name;
+		};
 		~Person() {};
 		std::string getName() {
 			return this->name;
@@ -43,14 +47,14 @@ namespace Model {
 		node *next;
 	};
 
-	class linked_list
+	class Linked_list
 	{
 	
 	private: 
 		Model::node *head, *tail;
 	public:
 		
-		linked_list()
+		Linked_list()
 		{
 			head = NULL;
 			tail = NULL;
@@ -80,7 +84,8 @@ namespace Model {
 					return tmp->data.getTel();
 				}				
 				tmp = tmp->next;
-			}
+			}
+
 			
 		}
 		std::string najdiTelefon(int id) const {
@@ -104,36 +109,41 @@ namespace Model {
 	};
 }
 
-std::ostream& operator<<(std::ostream& os, const Entity::Person& osoba) {
+//std::ostream& operator<<(std::ostream& os, const Entity::Person& osoba) {
+//
+//	std::cout << osoba.getId << std::endl;
+//	return os;
+//}
+//
+//std::istream& operator>>(std::istream& is, Entity::Person& osoba) {
+//
+//	//std::cin << // set id;
+//	return is;
+//}
 
-	std::cout << osoba.getId << std::endl;
-	return os;
-}
-
-std::istream& operator>>(std::istream& is, Entity::Person& osoba) {
-
-	//std::cin << // set id;
-	return is;
-}
-
-void nacti() {
-	Entity::Person osoby[2];
-	std::ifstream soubor("dsd.ttf");
-	for (size_t i = 0; i < 2; i++)
-	{
-		soubor >> osoby[i];
-	}
-}
-
-void zapis() {
-	std::ofstream soubor("sobor.txt");
-	soubor << "petr:" << "endl" << "dad" << std::endl;
-	soubor.close();
-}
+//void nacti() {
+//	Entity::Person osoby[2];
+//	std::ifstream soubor("dsd.ttf");
+//	for (size_t i = 0; i < 2; i++)
+//	{
+//		soubor >> osoby[i];
+//	}
+//}
+//
+//void zapis() {
+//	std::ofstream soubor("sobor.txt");
+//	soubor << "petr:" << "endl" << "dad" << std::endl;
+//	soubor.close();
+//}
 
 int main()
 {
+	Entity::Person p0 =  Entity::Person("Martin", "774993772");
+	Entity::Person p1 = Entity::Person("Olda", "774993776");
 	
+	Model::Linked_list *list = new Model::Linked_list();
+	list->pridejOsobu(p0);
+	list->pridejOsobu(p1);
 
 
 }
