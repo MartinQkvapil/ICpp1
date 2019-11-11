@@ -52,7 +52,7 @@ void testGame(int obj_count) {
 		}
 	}
 	
-	
+	delete tmp;
 }
 
 
