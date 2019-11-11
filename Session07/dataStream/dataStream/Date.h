@@ -8,22 +8,15 @@
 
 
 struct Date {
+private:
 	int _day;
 	int _month;
 	int _year;
-
-	//std::ostream& operator<<(std::ostream& os, const Person osoba) {
-	std::ostream& operator<<(std::ostream& os) {
-		//std::cout << osoba.getId << std::endl;
-		return os;
-	}
-
-	//std::istream& operator>>(std::istream& is, Person& osoba) {
-	std::istream& operator>>(std::istream& is) {
-		//std::cin << // set id;
-		return is;
-	}
-
+public:	
+	Date() {};
+	Date(int day, int month, int year) : _day(day), _month(month), _year(year)  {};
+	friend std::ostream& operator<<(std::ostream& os, Date& date);	
+	friend std::istream& operator>>(std::istream& is, Date& date);
 
 };
 

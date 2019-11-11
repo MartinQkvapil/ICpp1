@@ -14,6 +14,11 @@ Game::Game()
 
 Game::~Game()
 {
+	for (int i = 0; i < countOfObject; i++)
+	{
+		delete objects[i];
+
+	}
 	delete[] objects;
 }
 

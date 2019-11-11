@@ -5,26 +5,23 @@
 #include <ostream>
 #include <fstream>
 #include <iostream>
-
 #include <string>
 
 struct Address {
+private:
 	std::string _street;
 	std::string _town;
-	std::string _psc;
+	int _psc;
+public:
+	Address() {};
+	Address(std::string street, std::string town, int psc) : _street(street), _town(town), _psc(psc) {};
 
-	//std::ostream& operator<<(std::ostream& os, const Person osoba) {
-	friend	std::ostream& operator<<(std::ostream& os, const Person& person) {
-		//std::cout << osoba.getId << std::endl;
-		return os;
-	}
+	std::string get_street();
+	std::string get_town();
 
-	//std::istream& operator>>(std::istream& is, Person& osoba) {
-	std::istream& operator>>(std::istream& is) {
-		//std::cin << // set id;
-		return is;
-	}
 
+	friend std::ostream& operator<<(std::ostream& os, const Address& address);
+	friend std::istream& operator>>(std::istream& is, Address& address);
 };
 
 #endif // !ADDRESS_H
