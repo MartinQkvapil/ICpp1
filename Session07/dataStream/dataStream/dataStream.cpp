@@ -95,9 +95,46 @@ void loadFromText() {
 
 }
 
-void saveToBin() {}
+void saveToBin() {
+	/*Address address1{ "Ostrov","Letohrad", 56151 };
+	Date date1{ 20,01,1995 };
 
-void loadFromBin() {}
+	Person persons[] = {
+		{ "Martin", "Kvapil", address1 ,date1 },{ "Zdenek", "Kvapil", address1 ,date1 }
+	};
+	ofstream txtFile{ "persons.txt" };
+	for (int i = 0; i < 2; i++) {
+		txtFile << persons[i] << endl;
+	}*/
+
+	Address address1{ "Ostrov","Letohrad", 56151 };
+	Date date1{ 20,01,1995 };
+
+	Person persons[] = {
+		{ "Martin", "Kvapil", address1 ,date1 },{ "Zdenek", "Kvapil", address1 ,date1 }
+	};
+	Person person = { "Martin", "Kvapil", address1 ,date1 };
+
+	ofstream f{ "file.dat", ios_base::out | ios_base::binary };
+
+	f.write((char*)&person, sizeof Person);
+
+
+	f.close();
+
+
+	
+
+
+}
+
+void loadFromBin() {
+	ifstream f{ "file.dat", ios_base::in | ios_base::binary };
+	Person tmp;
+	f.read((char*)&tmp, sizeof Person);
+	cout << tmp.GetName() << endl;		
+	f.close();
+}
 
 int main()
 {
@@ -106,4 +143,6 @@ int main()
 
 	saveToBin();
 	loadFromBin();
+
+	return 0;
 }

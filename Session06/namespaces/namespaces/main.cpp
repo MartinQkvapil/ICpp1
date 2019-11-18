@@ -9,31 +9,33 @@
 
 #include <exception>
 
+#define _CRTDBG_MAP_ALLOC
+#include <string>
+#include <crtdbg.h>
+
+
 namespace Entity {
 	class Person {
 	public:
 		Person() {};
-		Person(std::string name, std::string telefon) {
-			this->telefon = telefon;
+		Person(std::string name, std::string phone) {
+			this->phone = phone;
 			this->name = name;
 		};
 		~Person() {};
-		std::string getName() {
+		std::string GetName() {
 			return this->name;
 		}
-		std::string getTel() {
-			return this->telefon;
+		std::string GetPhone() {
+			return this->phone;
 		}
-		int getId() {
+		int GetId() {
 			return this->id;
 		}
 	private:
-		//string jmeno, string telefon, int id
 		std::string name;
-		std::string telefon;
+		std::string phone;
 		int id;
-
-
 
 	};
 }
@@ -43,31 +45,40 @@ namespace Entity {
 //spojový seznam.
 namespace Model {
 
-	struct node
+	struct PersonNode
 	{
 		Entity::Person data;
-		node *next;
+		PersonNode *next;
 	};
 
-	class Linked_list
+	class PhoneList
 	{
 
 	private:
-		Model::node *head, *tail;
+		Model::PersonNode *head, *tail;
 	public:
-
-		Linked_list()
+		~PhoneList()
 		{
-			head = NULL;
-			tail = NULL;
+			PersonNode * tmp = head;
+			while (tmp != nullptr) {
+				delete tmp;
+				tmp = tmp->next;
+			}
+			delete head;
+			delete tail;
+		}
+		PhoneList()
+		{
+			head = nullptr;
+			tail = nullptr;
 		}
 
 		void pridejOsobu(Entity::Person person) {
-			node *tmp = new node;
+			PersonNode *tmp = new PersonNode();
 			tmp->data = person;
-			tmp->next = NULL;
+			tmp->next = nullptr;
 
-			if (head == NULL)
+			if (head == nullptr)
 			{
 				head = tmp;
 				tail = tmp;
@@ -79,28 +90,28 @@ namespace Model {
 			}
 		}
 		//o Přidá osobu do seznamu
-		std::string najdiTelefon(std::string name) const {
+		std::string findPhone(std::string name) const {
 			if (head == nullptr) {
-				throw std::logic_error("empty list");
+				throw std::out_of_range("empty list");
 			}
-			node * tmp = head;
+			PersonNode * tmp = head;
 			while (tmp != nullptr) {
-				if (tmp->data.getName() == name) {
-					return tmp->data.getTel();
+				if (tmp->data.GetName() == name) {
+					return tmp->data.GetPhone();
 				}
 				tmp = tmp->next;
 			}
 
 			throw std::logic_error("By name phone not found");
 		}
-		std::string najdiTelefon(int id) const {
+		std::string findPhone(int id) const {
 			if (head == nullptr) {
-				throw std::logic_error("empty list");
+				throw std::out_of_range("empty list");
 			}
-			node * tmp = head;
+			PersonNode * tmp = head;
 			while (tmp != nullptr) {
-				if (tmp->data.getId() == id) {
-					return tmp->data.getTel();
+				if (tmp->data.GetId() == id) {
+					return tmp->data.GetPhone();
 				}
 				tmp = tmp->next;
 			}
@@ -110,50 +121,23 @@ namespace Model {
 		//o Pokud zadaná osoba není v seznamu, metody vyvolají výjimku.
 	};
 
-	class TelList {
 
 
-
-
-	};
 }
 
-//std::ostream& operator<<(std::ostream& os, const Entity::Person& osoba) {
-//	std::cout << osoba.getId << std::endl;
-//	return os;
-//}
 
-//std::istream& operator>>(std::istream& is, Entity::Person& osoba) {
-//
-//	//std::cin << // set id;
-//	return is;
-//}
-
-//void nacti() {
-//	Entity::Person osoby[2];
-//	std::ifstream soubor("dsd.ttf");
-//	for (size_t i = 0; i < 2; i++)
-//	{
-//		soubor >> osoby[i];
-//	}
-//}
-//
-//void zapis() {
-//	std::ofstream soubor("sobor.txt");
-//	soubor << "petr:" << "endl" << "dad" << std::endl;
-//	soubor.close();
-//}
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // allocation check 
 	Entity::Person p0 = Entity::Person("Martin", "774993772");
 	Entity::Person p1 = Entity::Person("Olda", "774993776");
 
-	Model::Linked_list *list = new Model::Linked_list();
+	Model::PhoneList *list = new Model::PhoneList();
 	list->pridejOsobu(p0);
 	list->pridejOsobu(p1);
 
-
+	
 }
 
 

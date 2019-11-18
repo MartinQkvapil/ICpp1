@@ -19,6 +19,7 @@ public:
 	std::string GetSurname() const;
 	Address GetAddress() const;
 	Date GetDate() const;
+	~Person() {};
 
 	friend std::ostream& operator<<(std::ostream& os, Person& person);
 	friend std::istream& operator>>(std::istream& is, Person& person);

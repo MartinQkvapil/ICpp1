@@ -9,12 +9,13 @@
 
 struct Address {
 private:
-	std::string _street;
-	std::string _town;
-	int _psc;
+	std::string _street = "";
+	std::string _town = "";
+	int _psc = 0;
 public:
 	Address() {};
 	Address(std::string street, std::string town, int psc) : _street(street), _town(town), _psc(psc) {};
+	~Address() {};
 
 	std::string get_street();
 	std::string get_town();
