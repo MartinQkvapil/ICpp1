@@ -24,6 +24,10 @@ Date Person::GetDate() const
 	return this->date;
 }
 
+Person::~Person()
+{
+}
+
 std::ostream& operator<<(std::ostream& os, Person& person)
 {
 	return os << person.name << " " << person.surname << " " <<  person.address << " " << person.date << " " << std::endl;

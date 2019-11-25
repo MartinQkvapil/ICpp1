@@ -1,5 +1,9 @@
 #include "Address.h"
 
+Address::~Address()
+{
+}
+
 std::string Address::get_street()
 {
 	return this->_street;

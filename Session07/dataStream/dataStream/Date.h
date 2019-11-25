@@ -13,11 +13,11 @@ private:
 	int _month;
 	int _year;
 public:	
-	Date() {};
+	Date(){};
 	Date(int day, int month, int year) : _day(day), _month(month), _year(year)  {};
 	friend std::ostream& operator<<(std::ostream& os, Date& date);	
 	friend std::istream& operator>>(std::istream& is, Date& date);
-	~Date() {};
+	~Date();
 };
 
 #endif // !DATUM_H

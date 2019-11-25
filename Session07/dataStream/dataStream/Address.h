@@ -15,7 +15,7 @@ private:
 public:
 	Address() {};
 	Address(std::string street, std::string town, int psc) : _street(street), _town(town), _psc(psc) {};
-	~Address() {};
+	~Address();
 
 	std::string get_street();
 	std::string get_town();

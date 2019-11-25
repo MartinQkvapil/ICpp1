@@ -6,6 +6,10 @@
 #include "Address.h"
 #include "Date.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <string>
+#include <crtdbg.h>
+
 using namespace std;
 
 /*Ve funkci main volejte funkce uloz() a nacti(). Ve funkci uloz() vytvoøte statické pole objektù
@@ -118,13 +122,8 @@ void saveToBin() {
 	ofstream f{ "file.dat", ios_base::out | ios_base::binary };
 
 	f.write((char*)&person, sizeof Person);
-
-
+	delete[] persons;
 	f.close();
-
-
-	
-
 
 }
 
@@ -138,6 +137,7 @@ void loadFromBin() {
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // allocation check 
 	saveToText();
 	loadFromText();
 

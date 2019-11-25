@@ -12,3 +12,7 @@ std::istream& operator>>(std::istream& is, Date& date)
 	is >> date._year;
 	return is;
 }
+
+Date::~Date()
+{
+}
