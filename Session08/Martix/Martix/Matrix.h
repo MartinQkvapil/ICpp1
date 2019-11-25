@@ -9,6 +9,7 @@ public:
 	Matrix(const Matrix<T>& m);
 	~Matrix();
 
+	// getters and setters
 	void setRows(int rows) {
 		_rows = rows;
 	}
@@ -22,7 +23,10 @@ public:
 		return _cols;
 	}
 
+	// printer
 	void Print() const;
+
+	//  insert into matrix
 	void SetZ(T* array);
 	void Set(int row, int col, T value);
 
@@ -30,14 +34,15 @@ public:
 	Matrix<R> ReType() const;
 
 	T& GiveColumn(int row, int col);
-	const T& GiveColumn(int radek, int sloupec) const;
-
+	const T& GiveColumn(int row, int col) const;
 
 	Matrix Transpozice() const;
-	/*Matrix Soucin(const Matice& m) const;
-	Matrix Soucin(T skalar) const;
-	Matrix Soucet(const Matice& m) const;
-	Matrix Soucet(T skalar) const;*/
+	Matrix MullMatrix(const Matrix& m) const;
+	Matrix MullMatrix(T vector) const;
+	Matrix AddMatrix(const Matrix& m) const; // TODO
+	Matrix AddMatrix(T vector) const;	// TODO
+
+	bool IsEqual(const Matrix& m) const;
 
 private:
 	T** matrix;
@@ -116,7 +121,7 @@ inline T& Matrix<T>::GiveColumn(int row, int col)
 	if (row < getRows() && col < getCols() && row >= 0 && col >= 0) {
 		return matrix[row][col];
 	}
-	throw std::out_of_range;
+	throw "mimo";
 }
 
 template<typename T>
@@ -125,7 +130,7 @@ inline const T& Matrix<T>::GiveColumn(int row, int col) const
 	if (row < getRows() && col < getCols() && row >= 0 && col >= 0) {
 		return matrix[row][col];
 	}
-	throw std::out_of_range;
+	throw "mimo";
 }
 
 template<typename T>
@@ -141,8 +146,78 @@ Matrix<T> Matrix<T>::Transpozice() const
 	return *temp;
 }
 
+template<typename T>
+inline Matrix<T> Matrix<T>::MullMatrix(const Matrix& m) const
+{
+	if (m.getRows() == getCols()) {
+		Matrix<T>* temp = new Matrix( getRows(), getCols() );
+		for (int i = 0; i < getRows(); i++){
+			for (int j = 0; j < getCols(); j++){
+				temp->Set(i, j, 0);
+			}
+		}
 
-#endif // MATRIX_H
+			for (int i = 0; i < getRows(); ++i)
+				for (int j = 0; j < m.getCols(); ++j)
+					for (int k = 0; k < getCols(); ++k)
+					{
+						T tmp = temp->GiveColumn(i,j) + matrix[i][k] * m.GiveColumn(k,j);
+						temp->Set(i,j, tmp);
+						
+					}
+		return *temp;
+	}
+}
+
+template<typename T>
+inline Matrix<T> Matrix<T>::MullMatrix(T vector) const
+{
+	Matrix<T>* temp = new Matrix(getRows(), getCols());
+
+	for (int i = 0; i < getRows(); i++) {
+		for (int j = 0; j < getCols(); j++) {
+			temp->Set(i, j, matrix[i][j] * vector);
+		}
+	}
+	return *temp;
+}
+
+// TODO
+template<typename T>
+inline Matrix<T> Matrix<T>::AddMatrix(const Matrix& m) const
+{
+	//if (getRows() == m.getRows() && getCols() == m.getCols()) {
+	//	Matrix<T>* temp = new Matrix(getRows(), getCols());
+	//	for (int i = 0; i < getRows(); i++) {
+	//		for (int j = 0; j < getCols(); j++) {
+	//			temp->Set(i, j, matrix[i][j]);
+	//		}
+	//	}
+	//	return *temp;
+	//}
+	//throw "empty"; // TODO
+}
+
+template<typename T>
+inline bool Matrix<T>::IsEqual(const Matrix& m) const
+{
+	if (getRows() == m.getRows() && getCols() == m.getCols()) {
+
+		for (int i = 0; i < getRows(); i++) {
+			for (int j = 0; j < getCols(); j++) {
+				if (matrix[i][j] != m.GiveColumn(i, j)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	else {
+		return false;		
+	}
+}
+
+
 
 template<typename T>
 template<typename R>
@@ -157,4 +232,5 @@ inline Matrix<R> Matrix<T>::ReType() const
 	}
 	return *temp;	
 }
-	
+
+#endif // MATRIX_H
