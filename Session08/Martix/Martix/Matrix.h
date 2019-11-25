@@ -36,18 +36,18 @@ public:
 	T& GiveColumn(int row, int col);
 	const T& GiveColumn(int row, int col) const;
 
-	Matrix Transpozice() const;
+	Matrix Transposition() const;
 	Matrix MullMatrix(const Matrix& m) const;
 	Matrix MullMatrix(T vector) const;
-	Matrix AddMatrix(const Matrix& m) const; // TODO
+	Matrix AddMatrix(const Matrix& m) const; 
 	Matrix AddMatrix(T vector) const;	// TODO
 
 	bool IsEqual(const Matrix& m) const;
 
 private:
 	T** matrix;
-	signed _rows;
-	signed _cols;
+	int _rows;
+	int _cols;
 };
 
 template<typename T>
@@ -112,6 +112,8 @@ void Matrix<T>::SetZ(T* array) {
 template<typename T>
 inline void Matrix<T>::Set(int row, int col, T value)
 {
+	if (row < 0 || col < 0)
+		throw "Can not insert into this place";
 	matrix[row][col] = value;
 }
 
@@ -121,7 +123,7 @@ inline T& Matrix<T>::GiveColumn(int row, int col)
 	if (row < getRows() && col < getCols() && row >= 0 && col >= 0) {
 		return matrix[row][col];
 	}
-	throw "mimo";
+	throw "Out of boundaries";
 }
 
 template<typename T>
@@ -130,11 +132,11 @@ inline const T& Matrix<T>::GiveColumn(int row, int col) const
 	if (row < getRows() && col < getCols() && row >= 0 && col >= 0) {
 		return matrix[row][col];
 	}
-	throw "mimo";
+	throw "Out of boundaries";
 }
 
 template<typename T>
-Matrix<T> Matrix<T>::Transpozice() const
+Matrix<T> Matrix<T>::Transposition() const
 {
 	Matrix<T>* temp = new Matrix{ getRows(), getCols() };
 
@@ -149,31 +151,31 @@ Matrix<T> Matrix<T>::Transpozice() const
 template<typename T>
 inline Matrix<T> Matrix<T>::MullMatrix(const Matrix& m) const
 {
-	if (m.getRows() == getCols()) {
-		Matrix<T>* temp = new Matrix( getRows(), getCols() );
-		for (int i = 0; i < getRows(); i++){
-			for (int j = 0; j < getCols(); j++){
-				temp->Set(i, j, 0);
-			}
-		}
-
-			for (int i = 0; i < getRows(); ++i)
-				for (int j = 0; j < m.getCols(); ++j)
-					for (int k = 0; k < getCols(); ++k)
-					{
-						T tmp = temp->GiveColumn(i,j) + matrix[i][k] * m.GiveColumn(k,j);
-						temp->Set(i,j, tmp);
-						
-					}
-		return *temp;
+	if (m.getRows() != getCols()) {
+		throw "U cant multiplicate this matrixes";
 	}
+	Matrix<T>* temp = new Matrix(getRows(), getCols());
+	for (int i = 0; i < getRows(); i++) {
+		for (int j = 0; j < getCols(); j++) {
+			temp->Set(i, j, 0);
+		}
+	}
+
+	for (int i = 0; i < getRows(); ++i)
+		for (int j = 0; j < m.getCols(); ++j)
+			for (int k = 0; k < getCols(); ++k)
+			{
+				T tmp = temp->GiveColumn(i, j) + matrix[i][k] * m.GiveColumn(k, j);
+				temp->Set(i, j, tmp);
+
+			}
+	return *temp;
 }
 
 template<typename T>
 inline Matrix<T> Matrix<T>::MullMatrix(T vector) const
 {
 	Matrix<T>* temp = new Matrix(getRows(), getCols());
-
 	for (int i = 0; i < getRows(); i++) {
 		for (int j = 0; j < getCols(); j++) {
 			temp->Set(i, j, matrix[i][j] * vector);
@@ -182,55 +184,60 @@ inline Matrix<T> Matrix<T>::MullMatrix(T vector) const
 	return *temp;
 }
 
-// TODO
 template<typename T>
 inline Matrix<T> Matrix<T>::AddMatrix(const Matrix& m) const
 {
-	//if (getRows() == m.getRows() && getCols() == m.getCols()) {
-	//	Matrix<T>* temp = new Matrix(getRows(), getCols());
-	//	for (int i = 0; i < getRows(); i++) {
-	//		for (int j = 0; j < getCols(); j++) {
-	//			temp->Set(i, j, matrix[i][j]);
-	//		}
-	//	}
-	//	return *temp;
-	//}
-	//throw "empty"; // TODO
+	if (getRows() != m.getRows() || getCols() != m.getCols()) {
+		throw "Not valid size of matrix";
+	}
+	Matrix<T>* temp = new Matrix(getRows(), getCols());
+		for (int i = 0; i < getRows(); i++) {
+			for (int j = 0; j < getCols(); j++) {
+				temp->Set(i, j, matrix[i][j]+m[i][j]);
+			}
+		}
+		return *temp;
+}
+
+template<typename T>
+inline Matrix<T> Matrix<T>::AddMatrix(T vector) const
+{
+	Matrix<T>* temp = new Matrix(getRows(), getCols());
+	for (int i = 0; i < getRows(); i++) {
+		for (int j = 0; j < getCols(); j++) {
+			temp->Set(i, j, matrix[i][j] + vector);
+		}
+	}
+	return *temp;
 }
 
 template<typename T>
 inline bool Matrix<T>::IsEqual(const Matrix& m) const
 {
-	if (getRows() == m.getRows() && getCols() == m.getCols()) {
+	if (getRows() != m.getRows() || getCols() != m.getCols())
+		return false;
 
-		for (int i = 0; i < getRows(); i++) {
-			for (int j = 0; j < getCols(); j++) {
-				if (matrix[i][j] != m.GiveColumn(i, j)) {
-					return false;
-				}
+	for (int i = 0; i < getRows(); i++) {
+		for (int j = 0; j < getCols(); j++) {
+			if (matrix[i][j] != m.GiveColumn(i, j)) {
+				return false;
 			}
 		}
-		return true;
 	}
-	else {
-		return false;		
-	}
+	return true;
 }
-
-
 
 template<typename T>
 template<typename R>
 inline Matrix<R> Matrix<T>::ReType() const
 {
 	Matrix<R>* temp = new Matrix<R>(getRows(), getCols());
-
 	for (int i = 0; i < getRows(); i++) {
 		for (int j = 0; j < getCols(); j++) {
 			temp->Set(i, j, static_cast<R>(matrix[i][j]));
 		}
 	}
-	return *temp;	
+	return *temp;
 }
 
 #endif // MATRIX_H

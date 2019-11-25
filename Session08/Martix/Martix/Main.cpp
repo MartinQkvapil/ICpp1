@@ -12,7 +12,7 @@ int main() {
 	m.SetZ(testArr);
 	m.Print();
 
-	Matrix<int> mt = m.Transpozice();
+	Matrix<int> mt = m.Transposition();
 	mt.Print();
 	Matrix<int> mmt = m.MullMatrix(mt);
 	mmt.Print();
