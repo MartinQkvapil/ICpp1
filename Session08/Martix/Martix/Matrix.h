@@ -114,7 +114,7 @@ inline void Matrix<T>::Set(int row, int col, T value)
 {
 	if (row < 0 || col < 0)
 		throw "Can not insert into this place";
-	matrix[row][col] = value;
+		matrix[row][col] = value;
 }
 
 template<typename T>
