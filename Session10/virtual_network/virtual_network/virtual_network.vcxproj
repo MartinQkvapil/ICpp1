@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{0033AEE4-2593-4B88-B0B5-CC5B7AA6C3D1}</ProjectGuid>
-    <RootNamespace>pipe</RootNamespace>
+    <ProjectGuid>{E7A2461D-8F30-4942-A70B-1CB4D9CDB8BF}</ProjectGuid>
+    <RootNamespace>virtualnetwork</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,26 +123,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="IPipe.h" />
-    <ClInclude Include="NodeI.h" />
-    <ClInclude Include="NodeMinus.h" />
-    <ClInclude Include="NodeO.h" />
-    <ClInclude Include="NodePlus.h" />
-    <ClInclude Include="NodeT.h" />
-    <ClInclude Include="Pipe.h" />
-    <ClInclude Include="PipeNode.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="NodeI.cpp" />
-    <ClCompile Include="NodeMinus.cpp" />
-    <ClCompile Include="NodeO.cpp" />
-    <ClCompile Include="NodePlus.cpp" />
-    <ClCompile Include="NodeT.cpp" />
-    <ClCompile Include="Pipe.cpp" />
+    <ClCompile Include="ASitovyPrvek.cpp" />
+    <ClCompile Include="Fronta.cpp" />
+    <ClCompile Include="Hub.cpp" />
+    <ClCompile Include="Sit.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Uzel.cpp" />
+    <ClCompile Include="Zprava.cpp" />
+    <ClCompile Include="ZpravaPort.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="pipeline.txt" />
+    <ClInclude Include="ASitovyPrvek.h" />
+    <ClInclude Include="Fronta.h" />
+    <ClInclude Include="Hub.h" />
+    <ClInclude Include="Sit.h" />
+    <ClInclude Include="Uzel.h" />
+    <ClInclude Include="Zprava.h" />
+    <ClInclude Include="ZpravaPort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

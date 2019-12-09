@@ -12,7 +12,7 @@ Pipe::Pipe(int vel, std::istringstream iss)
 {
 	velikost = vel;
 	matice = new PipeNode **[vel];
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 3; i++) {
 		matice[i] = new PipeNode * [vel];
 	}
 	NodeMinus p;
@@ -55,7 +55,7 @@ const PipeNode* Pipe::DejPrvek(int x, int y) const {
 bool Pipe::JePotrubiOk() const {
 	for (int x = 0; x < velikost; x++) {
 		for (int y = 0; y < velikost; y++) {
-			//matice[x][y]->JeKorektneZapojen(this);
+			matice[x][y]->JeKorektneZapojen(this);
 		}
 	}
 	return false;
