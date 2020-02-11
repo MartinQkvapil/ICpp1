@@ -1,3 +1,0 @@
-testDB
-testDBC
-carusers
