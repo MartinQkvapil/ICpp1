@@ -1,0 +1,44 @@
+OSOBA 1 m Petr
+OSOBA 2 z Jana
+OSOBA 3 m Adam
+OSOBA 4 z Petra
+OSOBA 5 z Jitka
+OSOBA 6 m Ondrej
+OSOBA 7 m Jiri
+OSOBA 8 z Alena
+OSOBA 9 z Martina
+OSOBA 10 m Alex
+OSOBA 11 m Filip
+OSOBA 12 m Robert
+OSOBA 13 m Jiri
+OSOBA 14 z Martina
+OSOBA 15 m Leonard
+OSOBA 16 z Tereza
+OSOBA 17 m Emanuel
+OSOBA 18 m Bernard
+OSOBA 19 z Katerina
+OSOBA 20 m Borivoj
+VZTAH 1 2 1 manzele
+VZTAH 3 4 2 manzele
+VZTAH 5 6 3 manzele
+VZTAH 5 7 4 nevera
+VZTAH 6 7 5 nepratelstvi
+VZTAH 9 10 6 manzele
+VZTAH 8 11 7 partneri
+VZTAH 4 12 8 nevera
+VZTAH 13 16 9 manzele
+VZTAH 14 15 10 manzele
+VZTAH 18 19 11 partneri
+POTOMEK 1 8
+POTOMEK 1 9
+POTOMEK 2 10
+POTOMEK 3 11
+POTOMEK 4 12
+POTOMEK 6 13
+POTOMEK 6 14
+POTOMEK 7 15
+POTOMEK 8 16
+POTOMEK 9 17
+POTOMEK 9 18
+POTOMEK 10 19
+POTOMEK 11 20
